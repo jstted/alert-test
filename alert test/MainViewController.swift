@@ -12,11 +12,16 @@ class MainViewController: UIViewController {
     
     var textFromVC: String!
     let username = "Username"
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var gameButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var hiLabel: UILabel!
     @IBOutlet weak var resultAddLabel: UILabel!
     @IBOutlet weak var gameResultLabel: UILabel!
+    
+    // MARK: - View Did Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +32,11 @@ class MainViewController: UIViewController {
         
     }
     
-    
-    
+    // MARK: - Methods
 
     func alertGame () {
         let model = Model()
-        let alert = UIAlertController(title: "Guess the number!", message: "Enter number", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Guess the number!", message: "Enter number from 1 to 5", preferredStyle: .alert)
         alert.addTextField()
         
         let alertAction = UIAlertAction(title: "Enter!", style: .default) { action in
@@ -53,11 +57,8 @@ class MainViewController: UIViewController {
         alert.addTextField()
         
         let alertAction = UIAlertAction(title: "Calculate!", style: .default) { action in
-            let nilSituation = "0"
-            let first = alert.textFields![0].text ?? nilSituation
-            let second = alert.textFields![1].text ?? nilSituation
-            let firstNum = Int(first) ?? 0
-            let secondNum = Int(second) ?? 0
+            let firstNum = Int(alert.textFields![0].text ?? "0") ?? 0
+            let secondNum = Int(alert.textFields![1].text ?? "0") ?? 0
             let result = model.adding(firstNum: firstNum, secondNum: secondNum)
             self.resultAddLabel.text = String(result)
             self.resultAddLabel.isHidden = false
@@ -71,9 +72,9 @@ class MainViewController: UIViewController {
     
     
     
-    
-    
-    @IBAction func buttonAdd(_ sender: Any) {
+    // MARK: - Actions
+
+        @IBAction func buttonAdd(_ sender: Any) {
         alertAdd()
     }
     @IBAction func gameAction(_ sender: UIButton) {

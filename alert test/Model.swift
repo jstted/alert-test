@@ -9,9 +9,13 @@ import Foundation
 
 class Model {
     
+    // MARK: - Adding Model
+    
     func adding (firstNum f: Int, secondNum s: Int) -> Int {
         return f + s
     }
+    
+    // MARK: - Game Model
     
     let num = Int.random(in: 1...5)
     func randomGame(number: Int) -> String {
